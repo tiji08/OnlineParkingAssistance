@@ -18,6 +18,8 @@ Server:
 4) Distributed 
  
 
+Written in C++:
+
 #define PARKING_NAME_MAX 100
 enum TS_STATUS {
     SUCCESS = 0,
