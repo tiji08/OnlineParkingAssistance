@@ -25,21 +25,21 @@ struct node {
     struct node *list[26];
 };
 
-erronum add_account (int index, char *name);
+erronum add_account (int index, const char *name);
 
-erronum delete_account (int index, char *name) ;
+erronum delete_account (int index, const char *name) ;
 
-erronum add_friend (int index, char *name, char *friend);
+erronum add_friend (int index, const char *name, const char *friend_name);
 
-erronum find_friend (int index, char *name, char *friend);
+erronum find_friend (int index, const char *name, const char *friend_name);
 
-erronum suggest_friend(int index, char *name);
+erronum suggest_friend(int index, const char *name);
 
-erronum delete_friend (int index, char *name, char *friend);
+erronum delete_friend (int index, const char *name, const char *friend_name);
 
 erronum display_all_accounts (int index);
 
-erronum serach_account(int index, char *name);
+erronum serach_account(int index, const char *name);
 
-erronum display_all_friends (int index, char *name) ;
+erronum display_all_friends (int index, const char *name) ;
 #endif

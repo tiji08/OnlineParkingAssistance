@@ -11,9 +11,9 @@
 
 void destroy_trietree(int index);
 int init_trietree(void); 
-int insert (int index, char *iname);
-struct node * search(int index, char *name);
+int insert (int index, const char *iname);
+struct node * search(int index, const char *name);
 void display_all_nodes(int index);
-int delete_node(int index, char *name);
+int delete_node(int index, const char *name);
 
 #endif //TRIE_H

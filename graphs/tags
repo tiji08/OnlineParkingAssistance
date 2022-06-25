@@ -1,0 +1,81 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=c++ -g -Wall -Werror$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-I$(IDIR)$/;"	m
+DEPS	Makefile	/^DEPS = $(patsubst %,$(IDIR)\/%,$(_DEPS))$/;"	m
+GRAPH_FAIL	include/graph.h	/^    GRAPH_FAIL$/;"	e	enum:_erronum
+GRAPH_H	include/graph.h	2;"	d
+GRAPH_SUCCESS	include/graph.h	/^    GRAPH_SUCCESS,$/;"	e	enum:_erronum
+GetFromQ	src/qstack.c	/^void * GetFromQ() {$/;"	f
+IDIR	Makefile	/^IDIR =.\/include$/;"	m
+InsertInQ	src/qstack.c	/^void InsertInQ(void *data) {$/;"	f
+MAX_FRIENDS	include/graph.h	12;"	d
+MAX_NUM_OF_TRIE	src/trie.c	3;"	d	file:
+NAME_SIZE	include/graph.h	11;"	d
+OBJ	Makefile	/^OBJ = $(patsubst %,$(ODIR)\/%,$(_OBJ))$/;"	m
+ODIR	Makefile	/^ODIR=.\/src$/;"	m
+Queue	include/qstack.h	/^struct Queue {$/;"	s
+SRCDIR	Makefile	/^SRCDIR=.\/src$/;"	m
+StackNode	include/qstack.h	/^struct StackNode$/;"	s
+TRIE_H	include/trie.h	2;"	d
+_DEPS	Makefile	/^_DEPS = graph.h trie.h qstack.h$/;"	m
+_OBJ	Makefile	/^_OBJ = graph.o trie.o main.o qstack.o$/;"	m
+__GSTACK_H__	include/qstack.h	5;"	d
+_erronum	include/graph.h	/^typedef enum _erronum {$/;"	g
+add_account	src/graph.c	/^erronum add_account (int index, const char *name) {$/;"	f
+add_friend	src/graph.c	/^erronum add_friend (int index, const char *name, const char *friend_name) {$/;"	f
+data	include/qstack.h	/^    void *data;$/;"	m	struct:Queue
+data	include/qstack.h	/^    void *data;$/;"	m	struct:StackNode
+delete_account	src/graph.c	/^erronum delete_account (int index, const char *name) {$/;"	f
+delete_friend	src/graph.c	/^erronum delete_friend (int index, const char *name, const char *friend_name) {$/;"	f
+delete_friends_list	src/trie.c	/^static void delete_friends_list(struct node *account) {$/;"	f	file:
+delete_node	src/trie.c	/^int delete_node(int index, const char *iname) {$/;"	f
+destroyQ	src/qstack.c	/^void destroyQ() {$/;"	f
+destroyStack	src/qstack.c	/^void destroyStack() {$/;"	f
+destroy_trietree	src/trie.c	/^void destroy_trietree(int index)$/;"	f
+display_all	src/trie.c	/^void display_all(struct node *root) {$/;"	f
+display_all_accounts	src/graph.c	/^erronum display_all_accounts (int index) {$/;"	f
+display_all_friends	src/graph.c	/^erronum display_all_friends (int index, const char *name) {$/;"	f
+display_all_nodes	src/trie.c	/^void display_all_nodes(int index) {$/;"	f
+erronum	include/graph.h	/^}erronum;$/;"	t	typeref:enum:_erronum
+find_friend	src/graph.c	/^erronum find_friend (int index,const char *name, const char *friend_name) {$/;"	f
+friends	include/graph.h	/^    char *friends[MAX_FRIENDS];$/;"	m	struct:node
+frontQ	src/qstack.c	/^static struct Queue *frontQ = NULL;$/;"	v	typeref:struct:Queue	file:
+g_head	src/trie.c	/^struct node g_head;$/;"	v	typeref:struct:node
+ga_head	src/trie.c	/^struct node *ga_head[MAX_NUM_OF_TRIE];$/;"	v	typeref:struct:node
+gcombs	src/get_id.c	/^char *gcombs;$/;"	v
+gcombs_len	src/get_id.c	/^int gcombs_len;$/;"	v
+gen_seq	src/get_id.c	/^void gen_seq(char *combs, int len) {$/;"	f
+get_base2	src/get_id.c	/^int get_base2(int num) {$/;"	f
+gpos	src/get_id.c	/^int gpos;$/;"	v
+gtop	src/trie.c	/^int gtop = -1;$/;"	v
+head	src/trie.c	/^struct node *head = &g_head;$/;"	v	typeref:struct:node
+inc_ref_count	src/trie.c	/^void inc_ref_count(int index, char *name) {$/;"	f
+init_trietree	src/trie.c	/^int init_trietree() {$/;"	f
+insert	src/trie.c	/^int insert (int index, const char *iname) {$/;"	f
+insertInStack	src/qstack.c	/^void insertInStack(void *data)$/;"	f
+key	src/get_id.c	/^char *key;$/;"	v
+key_len	src/get_id.c	/^int key_len;$/;"	v
+list	include/graph.h	/^    struct node *list[26];$/;"	m	struct:node	typeref:struct:node::node
+main	src/get_id.c	/^int main()$/;"	f
+main	src/main.c	/^int main()$/;"	f
+name	include/graph.h	/^    char *name;$/;"	m	struct:node
+next	include/qstack.h	/^    struct Queue *next;$/;"	m	struct:Queue	typeref:struct:Queue::Queue
+next	include/qstack.h	/^    struct StackNode *next;$/;"	m	struct:StackNode	typeref:struct:StackNode::StackNode
+node	include/graph.h	/^struct node {$/;"	s
+popFromStack	src/qstack.c	/^void* popFromStack()$/;"	f
+poss	src/get_id.c	/^char *poss;$/;"	v
+power_to	src/get_id.c	/^long power_to(long base, long power) {$/;"	f
+prev	include/qstack.h	/^    struct StackNode *prev;$/;"	m	struct:StackNode	typeref:struct:StackNode::StackNode
+rearQ	src/qstack.c	/^static struct Queue *rearQ = NULL;$/;"	v	typeref:struct:Queue	file:
+ref_count	include/graph.h	/^    int ref_count;$/;"	m	struct:node
+search	src/trie.c	/^struct node * search(int index, const char *name) {$/;"	f
+serach_account	src/graph.c	/^erronum serach_account(int index, const char *name) {$/;"	f
+sub_key	src/get_id.c	/^int sub_key(int pos) {$/;"	f
+suggest_friend	src/graph.c	/^erronum suggest_friend(int index, const char *name) {$/;"	f
+test_trie	src/trie.c	/^int test_trie()$/;"	f
+top	src/qstack.c	/^static struct StackNode *top = NULL;$/;"	v	typeref:struct:StackNode	file:

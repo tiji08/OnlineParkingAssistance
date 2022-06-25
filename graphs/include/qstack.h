@@ -18,7 +18,7 @@ struct StackNode
 
 
 void insertInStack(void *data);
-int* popFromStack();
+void* popFromStack();
 void destroyStack();
 
 void * GetFromQ();
