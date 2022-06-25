@@ -87,10 +87,27 @@ struct node * search(int index, const char *name) {
     }
 }
 
+int collect_accounts;
+char all_accounts[1024*10];
+int offset;
+
+void collect_list_of_accoutns() {
+    collect_accounts = 1;
+    offset = 0;
+}
+
+char *get_list_of_accoutns() {
+    return (char *)all_accounts;
+}
 
 void display_all(struct node *root) {
     if (root->name != NULL) {
         printf("Name -> %s\n", root->name);
+        if ( 1==collect_accounts)
+        {
+            strncpy(all_accounts+offset, root->name, strlen(root->name)); 
+            offset += strlen(root->name);            
+        }
     }
     for  (int i=0; i<26; i++) {
         if (root->list[i] != NULL) {
