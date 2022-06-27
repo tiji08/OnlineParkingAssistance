@@ -57,7 +57,7 @@ int start_tcp_server(void) {
 #define SA struct sockaddr
 int connfd;
 
-// Function designed for chat between client and server.
+// Function designed to handle request from client
 void *func(void *pconnfd)
 {
     char buff[MAX];
