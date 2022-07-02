@@ -52,14 +52,61 @@ int start_tcp_server(void) {
 #include <unistd.h>
 #include "trie.h"
 #include "graph.h"
+#include <vector>
 
 #define PORT 8080
 #define SA struct sockaddr
 int connfd;
 
+
+#define MAX_THREADS 10
+class ThreadPool {
+    pthread_t pool[MAX_THREADS];
+    pthread_mutex_t mut;
+    std::vector<int> sockfds;
+    void (*pool_fun)(void *ptr) = pool_fun_def;
+    public:
+    ThreadPool() {
+        pthread_mutex_init(&mut, NULL);
+        for (int i = 0; i<MAX_THREADS; i++) {
+            pthread_create(&pool[i], NULL, pool_fun, NULL);
+        }
+    }
+
+    void *pool_fun_def(void *ptr) {
+        int sockfd;
+        while(1) {
+            pthread_yield();
+            pthread_mutex_lock(&mut);
+            if (sockfds.size()<=0) {
+                pthread_mutex_unlock(&mut);
+                continue;
+            }
+            sockfd = sockfds.back();
+            sockfds.pop_back();
+            pthread_mutex_unlock(&mut);
+
+            cb_handle_conn((void*)sockfd);
+        }
+        return NULL;
+    }
+
+    void handle_connection(int connfd) {
+        pthread_mutex_lock(&mut);
+        sockfds.insert(sockfds.begin(), connfd);
+        pthread_mutex_unlock(&mut);
+    }
+
+    int run_loop(){
+
+    }
+};
+
+
 // Function designed for chat between client and server.
-void *func(void *pconnfd)
+void *cb_handle_conn(void *pconnfd)
 {
+    int connfd = (int)pconnfd;
     char buff[MAX];
     //int n;
     // infinite loop for chat
@@ -82,7 +129,10 @@ void *func(void *pconnfd)
         
 
         // and send that buffer to client
-        write(connfd, buff, 20);
+        int sent_data = write(connfd, buff, 20);
+        if (sent_data != 20) {
+            printf("Not able to send data!!!");
+        }
 
         // if msg contains "Exit" then server exit and chat ended.
         if (strncmp("exit", buff, 4) == 0) {
@@ -150,7 +200,7 @@ int start_tcp_server()
         // Function for chatting between client and server
         //func(connfd);
 
-        pthread_create(&t1, NULL, func, NULL);
+        pthread_create(&t1, NULL, cb_handle_conn, NULL);
     }
 
     // After chatting close the socket

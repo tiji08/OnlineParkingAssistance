@@ -19,4 +19,4 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 	$(CC) -c -o $@ $< $(CFLAGS) $(INCLIBS)
 
 facebook: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -o $@ $^ $(CFLAGS) $(INCLIBS)

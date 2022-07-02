@@ -102,11 +102,13 @@ char *get_list_of_accoutns() {
 
 void display_all(struct node *root) {
     if (root->name != NULL) {
-        printf("Name -> %s\n", root->name);
+        
         if ( 1==collect_accounts)
         {
             strncpy(all_accounts+offset, root->name, strlen(root->name)); 
             offset += strlen(root->name);            
+        } else {
+            printf("Name -> %s\n", root->name);
         }
     }
     for  (int i=0; i<26; i++) {
