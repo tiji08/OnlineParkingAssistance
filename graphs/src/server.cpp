@@ -58,6 +58,7 @@ int start_tcp_server(void) {
 #define SA struct sockaddr
 int connfd;
 
+<<<<<<< HEAD
 
 #define MAX_THREADS 10
 class ThreadPool {
@@ -105,6 +106,10 @@ class ThreadPool {
 
 // Function designed for chat between client and server.
 void *cb_handle_conn(void *pconnfd)
+=======
+// Function designed to handle request from client
+void *func(void *pconnfd)
+>>>>>>> 6e482e95f74243e9b4f0e5b9f6e36ade295cbed7
 {
     int connfd = (int)pconnfd;
     char buff[MAX];
