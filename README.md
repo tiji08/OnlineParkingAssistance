@@ -1,21 +1,24 @@
 REQUIREMENTS:
 ============
 Between driver and server
-1) Client: sends request
-2) Server: Recieves and Searches for parking place details
+=========================
+1) Client: sends subscription request
+2) Server: Recieves and Searches for topic and confirms
 3) Server: Allotes slot and  Replies with token (with detials), if it is available.
 4) Client: confirms
  
  
-Between operator and server
+Between operator and server:
+============================
 1) Operator: Sends the slots details
 2) Server: Creates entry and sneds confirmation
  
-Server:
-1) Run TCP server
-2) 1000 parellel conns (threads)
-3) Persistency (file write, read periodically) 
-4) Distributed 
+Server Requirements:
+====================
+1) Runs TCP server, reads sub/pub and topic
+2) 1 million parellel connections (0.1 million publishers/ 0.9 million subscribers)
+3) Should publish the data to all subscribers
+4) Scalable with load balancer
  
 
 Written in C++:
