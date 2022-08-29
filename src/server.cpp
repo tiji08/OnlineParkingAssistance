@@ -53,6 +53,7 @@ int start_tcp_server(void) {
 #include "trie.h"
 #include "graph.h"
 #include <vector>
+#include <sched.h>
 
 #define PORT 8080
 #define MAX_THREADS 10
@@ -103,7 +104,7 @@ void *pool_fun_def(void *ptr) {
         int sockfd = data-> sockfd;
         
         while(1) {
-            pthread_yield();
+            sched_yield();
             pthread_mutex_lock(&data->this_thread->mut);
             if (sockfds.size()<=0) {
                 pthread_mutex_unlock(&data->this_thread->mut);
