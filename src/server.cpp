@@ -55,15 +55,11 @@ int start_tcp_server(void) {
 #include <vector>
 
 #define PORT 8080
+#define MAX_THREADS 10
 #define SA struct sockaddr
 int connfd;
-
-struct thread_fun_data {
-    int sockfd;
-    ThreadPool *this;
-};
-
-#define MAX_THREADS 10
+void *pool_fun_def(void *ptr);
+void *cb_handle_conn(void *pconnfd);
 class ThreadPool {
     friend void *pool_fun_def(void *ptr);
     pthread_t pool[MAX_THREADS];
@@ -86,36 +82,50 @@ class ThreadPool {
     }
 
     int run_loop(){
-
+        return 0;
     }
+};
+
+
+struct thread_fun_data {
+    int sockfd;
+    ThreadPool *this_thread;
+};
+
+struct thread_data {
+    int sockfd;
 };
 
 void *pool_fun_def(void *ptr) {
         struct thread_fun_data *data;
         data = (struct thread_fun_data *)ptr;
-
+        std::vector<int> sockfds = data->this_thread->sockfds;
         int sockfd = data-> sockfd;
         
         while(1) {
             pthread_yield();
-            pthread_mutex_lock(&data->this->mut));
+            pthread_mutex_lock(&data->this_thread->mut);
             if (sockfds.size()<=0) {
-                pthread_mutex_unlock(&data->this->mut);
+                pthread_mutex_unlock(&data->this_thread->mut);
                 continue;
             }
             sockfd = sockfds.back();
             sockfds.pop_back();
-            pthread_mutex_unlock(&data->this->mut));
+            pthread_mutex_unlock(&data->this_thread->mut);
+            
 
-            cb_handle_conn((void*)sockfd);
+            struct thread_data *data = new thread_data;
+            data->sockfd = sockfd;
+            cb_handle_conn((void*)data);
         }
         return NULL;
 }
 
 
 // Function designed for chat between client and server.
-void *cb_handle_conn(void *pconnfd)
-    int connfd = (int)pconnfd;
+void *cb_handle_conn(void *pconnfd) {
+    struct thread_data *data = (struct thread_data *)pconnfd;
+    int connfd = data->sockfd;
     char buff[MAX];
     //int n;
     // infinite loop for chat
