@@ -16,6 +16,14 @@ struct StackNode
     struct StackNode *prev;
 };
 
+class Queue_t {
+  struct Queue *frontQ = NULL;
+  struct Queue *rearQ = NULL;
+  public:
+  void InsertInQ(void *data);
+  void * GetFromQ();
+  void destroyQ();
+};
 
 void insertInStack(void *data);
 void* popFromStack();

@@ -101,11 +101,13 @@ erronum find_friend (int index,const char *name, const char *friend_name) {
         return GRAPH_FAIL;
     }
 
-    InsertInQ((void*)entry);
+    Queue_t myQ;
+
+    myQ.InsertInQ((void*)entry);
 
     while(1) {
         // Get node name from Q
-        entry = (struct node *)GetFromQ();
+        entry = (struct node *)myQ.GetFromQ();
         if (entry == NULL) {
             // Q is empty: Exit
             printf("Q is empty!!!!");
@@ -122,7 +124,7 @@ erronum find_friend (int index,const char *name, const char *friend_name) {
         // else, add all friends of node to Q
     }
 
-    destroyQ();
+    myQ.destroyQ();
 }
 
 
@@ -149,7 +151,7 @@ erronum suggest_friend(int index, const char *name) {
     // Go to each friend and get new list from friend. new 10 suggestions
     // BFS 1, 2,3:  DFS--- vamsi->kamal->nagesh->0
     //1) add all friends in Q (kamal -> kiran->nag->vishnu)
-    //handleQ(name);
+
     return GRAPH_SUCCESS;
 }
 
