@@ -3,7 +3,7 @@
 #define PARKING_NAME_MAX 100
 enum TS_STATUS {
     SUCCESS = 0,
-    FAILURE = 1,
+    FAILURE
     INV_IN = 2,
     SYS_ERR = 3 
 }
